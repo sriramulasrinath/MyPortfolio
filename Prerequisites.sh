@@ -23,5 +23,8 @@ sudo docker run hello-world
 sudo systemctl start docker
 sudo systemctl enable docker
 usermod -aG docker ec2-user
-
+########################################
+sudo dnf module list nodejs -y
+sudo dnf module enable nodejs:20 -y
+sudo dnf install nodejs -y
 echo -e "$R Logout and Login again $N"
