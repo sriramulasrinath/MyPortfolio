@@ -18,3 +18,8 @@ data "aws_ami" "ami_info" {
         values = ["hvm"]
     }
 }
+
+data "aws_vpc" "default" {
+    default = true
+
+}

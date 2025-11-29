@@ -1,7 +1,7 @@
 resource "aws_security_group" "web_server_sg" {
   name        = "web-server-security-group"
   description = "Allows HTTP/HTTPS and SSH inbound traffic"
-  vpc_id      = aws_vpc.main.id # Reference to an existing VPC
+  vpc_id      = data.aws_vpc.default.id
 
   ingress {
     description = "Allow HTTP from anywhere"
@@ -41,8 +41,9 @@ resource "aws_security_group" "web_server_sg" {
 }
 
 resource "aws_instance" "Test"{
-    ami = data.aws_ami.ami_info
+    ami = data.aws_ami.ami_info.id
     instance_type = var.instance_type
+    vpc_security_group_ids =  [aws_security_group.web_server_sg.id]
     tags = {
       Name = "web"
       Env = "Testing" 
